@@ -19,9 +19,18 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "HTTP File Server"
 	app.Usage = "Serve files over HTTP from a directory"
+	app.Version = "0.0.1"
 	app.Flags = []cli.Flag{
-		cli.IntFlag{"port, p", 80, "port number to use"},
-		cli.StringFlag{"dir, d", "./", "directory to serve"},
+		cli.IntFlag{
+			Name:  "port, p",
+			Value: 80,
+			Usage: "port number to use",
+		},
+		cli.StringFlag{
+			Name:  "dir, d",
+			Value: "./",
+			Usage: "directory to serve",
+		},
 	}
 	app.Action = func(c *cli.Context) {
 		port := c.Int("port")
