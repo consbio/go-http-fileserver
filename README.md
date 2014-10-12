@@ -17,7 +17,10 @@ This is a simple, lightweight HTTP fileserver that can be run easily from the co
 Install **go 1.1+** and setup [GOPATH](http://golang.org/doc/code.html#GOPATH) and GOBIN.  Then:
 
 ```
+//Dependencies
 > go get github.com/codegangsta/cli
+> go get github.com/codegangsta/negroni
+> go get github.com/phyber/negroni-gzip/gzip
 
 > go get github.com/consbio/go-http-fileserver
 ```

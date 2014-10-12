@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"github.com/codegangsta/cli"
-	"log"
+	"github.com/codegangsta/negroni"
+	"github.com/phyber/negroni-gzip/gzip"
 	"net/http"
 	"os"
 )
@@ -35,10 +36,15 @@ func main() {
 	app.Action = func(c *cli.Context) {
 		port := c.Int("port")
 		directory := c.String("dir")
-		fmt.Println("serving ", directory, " on port ", port)
 		fmt.Println("press CTRL-C to exit")
-		http.Handle("/", handleCORS(http.FileServer(http.Dir(directory))))
-		log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), nil))
+
+		mux := http.NewServeMux()
+		mux.HandleFunc("/", handleCORS(http.FileServer(http.Dir(directory))))
+
+		n := negroni.Classic()
+		n.Use(gzip.Gzip(gzip.DefaultCompression))
+		n.UseHandler(mux)
+		n.Run(fmt.Sprintf(":%d", port))
 	}
 	app.Run(os.Args)
 }
