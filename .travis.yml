@@ -5,6 +5,8 @@ go:
   - tip
 install:
   - go get github.com/codegangsta/cli
+  - go get github.com/codegangsta/negroni
+  - go get github.com/phyber/negroni-gzip/gzip
 notifications:
   email:
     recipients:
