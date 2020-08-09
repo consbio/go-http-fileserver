@@ -1,10 +1,6 @@
 # go-http-fileserver #
 
 
-[![Build Status](https://travis-ci.org/consbio/go-http-fileserver.svg?branch=master)](https://travis-ci.org/consbio/go-http-fileserver)
-
-
-
 ## Purpose ##
 
 This is a simple, lightweight HTTP fileserver that can be run easily from the command line.  We developed it so that we could easily interact with demo websites and their assets.  This even includes CORS support, so you could access resources from different domain names or ports.
